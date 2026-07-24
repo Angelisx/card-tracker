@@ -2,9 +2,19 @@
   "lastVerified": "2026-07-24",
   "note": "Reward rates researched July 2026 from issuer sites and NerdWallet/CNBC/Forbes roundups. Rotating categories (Discover it, Chase Freedom Flex, Citi Custom Cash) change quarterly/monthly and must be kept current manually in Settings > Edit Card Database. Always confirm current terms with the issuer before relying on this for real spending decisions.",
   "categories": [
-    "dining", "groceries", "gas", "travel", "drugstores", "streaming",
-    "transit", "entertainment", "online_shopping", "home_improvement",
-    "wholesale_clubs", "phone_plans", "other"
+    "dining",
+    "groceries",
+    "gas",
+    "travel",
+    "drugstores",
+    "streaming",
+    "transit",
+    "entertainment",
+    "online_shopping",
+    "home_improvement",
+    "wholesale_clubs",
+    "phone_plans",
+    "other"
   ],
   "cards": [
     {
@@ -14,11 +24,29 @@
       "rewardType": "points",
       "rotating": false,
       "categories": [
-        { "category": "travel", "rate": 5, "notes": "Chase Travel portal; 2x other travel" },
-        { "category": "dining", "rate": 3 },
-        { "category": "streaming", "rate": 3 },
-        { "category": "groceries", "rate": 3, "notes": "Online groceries only" },
-        { "category": "gas", "rate": 3, "notes": "Includes EV charging" }
+        {
+          "category": "travel",
+          "rate": 5,
+          "notes": "Chase Travel portal; 2x other travel"
+        },
+        {
+          "category": "dining",
+          "rate": 3
+        },
+        {
+          "category": "streaming",
+          "rate": 3
+        },
+        {
+          "category": "groceries",
+          "rate": 3,
+          "notes": "Online groceries only"
+        },
+        {
+          "category": "gas",
+          "rate": 3,
+          "notes": "Includes EV charging"
+        }
       ],
       "baseRate": 1,
       "source": "https://www.nerdwallet.com/credit-cards/best/travel"
@@ -30,9 +58,19 @@
       "rewardType": "cashback",
       "rotating": false,
       "categories": [
-        { "category": "dining", "rate": 3 },
-        { "category": "drugstores", "rate": 3 },
-        { "category": "travel", "rate": 5, "notes": "Chase Travel portal only" }
+        {
+          "category": "dining",
+          "rate": 3
+        },
+        {
+          "category": "drugstores",
+          "rate": 3
+        },
+        {
+          "category": "travel",
+          "rate": 5,
+          "notes": "Chase Travel portal only"
+        }
       ],
       "baseRate": 1.5,
       "source": "https://upgradedpoints.com/credit-cards/chase-freedom-unlimited-vs-amex-gold-card/"
@@ -44,11 +82,29 @@
       "rewardType": "cashback",
       "rotating": true,
       "categories": [
-        { "category": "dining", "rate": 3 },
-        { "category": "drugstores", "rate": 3 },
-        { "category": "gas", "rate": 5, "notes": "Q3 2026 rotating category (up to $1,500/quarter, activation required)" },
-        { "category": "transit", "rate": 5, "notes": "Q3 2026 rotating category" },
-        { "category": "entertainment", "rate": 5, "notes": "Q3 2026 rotating: select live entertainment" }
+        {
+          "category": "dining",
+          "rate": 3
+        },
+        {
+          "category": "drugstores",
+          "rate": 3
+        },
+        {
+          "category": "gas",
+          "rate": 5,
+          "notes": "Q3 2026 rotating category (up to $1,500/quarter, activation required)"
+        },
+        {
+          "category": "transit",
+          "rate": 5,
+          "notes": "Q3 2026 rotating category"
+        },
+        {
+          "category": "entertainment",
+          "rate": 5,
+          "notes": "Q3 2026 rotating: select live entertainment"
+        }
       ],
       "baseRate": 1,
       "source": "https://www.forbes.com/advisor/credit-cards/chase-freedom-flex-q3-bonus-categories-2026-lmandp5/"
@@ -60,10 +116,22 @@
       "rewardType": "cashback",
       "rotating": false,
       "categories": [
-        { "category": "dining", "rate": 3 },
-        { "category": "groceries", "rate": 3 },
-        { "category": "entertainment", "rate": 3 },
-        { "category": "streaming", "rate": 3 }
+        {
+          "category": "dining",
+          "rate": 3
+        },
+        {
+          "category": "groceries",
+          "rate": 3
+        },
+        {
+          "category": "entertainment",
+          "rate": 3
+        },
+        {
+          "category": "streaming",
+          "rate": 3
+        }
       ],
       "baseRate": 1,
       "source": "https://www.nerdwallet.com/credit-cards/best/restaurants"
@@ -75,10 +143,22 @@
       "rewardType": "cashback",
       "rotating": false,
       "categories": [
-        { "category": "dining", "rate": 3 },
-        { "category": "groceries", "rate": 3 },
-        { "category": "entertainment", "rate": 3 },
-        { "category": "streaming", "rate": 3 }
+        {
+          "category": "dining",
+          "rate": 3
+        },
+        {
+          "category": "groceries",
+          "rate": 3
+        },
+        {
+          "category": "entertainment",
+          "rate": 3
+        },
+        {
+          "category": "streaming",
+          "rate": 3
+        }
       ],
       "baseRate": 1,
       "source": "well-established no-annual-fee version of Savor; verify current terms with issuer"
@@ -90,8 +170,16 @@
       "rewardType": "miles",
       "rotating": false,
       "categories": [
-        { "category": "travel", "rate": 5, "notes": "Flights & vacation rentals via Capital One Travel" },
-        { "category": "entertainment", "rate": 5, "notes": "Capital One Entertainment purchases" }
+        {
+          "category": "travel",
+          "rate": 5,
+          "notes": "Flights & vacation rentals via Capital One Travel"
+        },
+        {
+          "category": "entertainment",
+          "rate": 5,
+          "notes": "Capital One Entertainment purchases"
+        }
       ],
       "baseRate": 2,
       "source": "https://www.cnbc.com/select/capital-one-venture-x-vs-american-express-platinum/"
@@ -113,8 +201,16 @@
       "rewardType": "points",
       "rotating": false,
       "categories": [
-        { "category": "dining", "rate": 4, "notes": "Up to $50,000/yr, then 1x" },
-        { "category": "groceries", "rate": 4, "notes": "U.S. supermarkets, up to $25,000/yr" }
+        {
+          "category": "dining",
+          "rate": 4,
+          "notes": "Up to $50,000/yr, then 1x"
+        },
+        {
+          "category": "groceries",
+          "rate": 4,
+          "notes": "U.S. supermarkets, up to $25,000/yr"
+        }
       ],
       "baseRate": 1,
       "source": "https://upgradedpoints.com/credit-cards/chase-freedom-unlimited-vs-amex-gold-card/"
@@ -126,7 +222,11 @@
       "rewardType": "points",
       "rotating": false,
       "categories": [
-        { "category": "travel", "rate": 5, "notes": "Flights booked directly/Amex Travel up to $500,000/yr, then 1x; prepaid hotels via Amex Travel" }
+        {
+          "category": "travel",
+          "rate": 5,
+          "notes": "Flights booked directly/Amex Travel up to $500,000/yr, then 1x; prepaid hotels via Amex Travel"
+        }
       ],
       "baseRate": 1,
       "source": "https://www.cnbc.com/select/capital-one-venture-x-vs-american-express-platinum/"
@@ -138,10 +238,24 @@
       "rewardType": "cashback",
       "rotating": false,
       "categories": [
-        { "category": "groceries", "rate": 6, "notes": "U.S. supermarkets, up to $6,000/yr then 1%" },
-        { "category": "streaming", "rate": 6, "notes": "Select U.S. streaming subscriptions" },
-        { "category": "transit", "rate": 3 },
-        { "category": "gas", "rate": 3 }
+        {
+          "category": "groceries",
+          "rate": 6,
+          "notes": "U.S. supermarkets, up to $6,000/yr then 1%"
+        },
+        {
+          "category": "streaming",
+          "rate": 6,
+          "notes": "Select U.S. streaming subscriptions"
+        },
+        {
+          "category": "transit",
+          "rate": 3
+        },
+        {
+          "category": "gas",
+          "rate": 3
+        }
       ],
       "baseRate": 1,
       "source": "https://www.nerdwallet.com/credit-cards/best/groceries"
@@ -163,9 +277,21 @@
       "rewardType": "cashback",
       "rotating": true,
       "categories": [
-        { "category": "gas", "rate": 5, "notes": "Auto-picks your top eligible spend category each billing cycle, up to $500; example shown is gas" },
-        { "category": "dining", "rate": 5, "notes": "Only one category earns 5% per cycle — whichever you spend most on" },
-        { "category": "groceries", "rate": 5, "notes": "Only one category earns 5% per cycle" }
+        {
+          "category": "gas",
+          "rate": 5,
+          "notes": "Auto-picks your top eligible spend category each billing cycle, up to $500; example shown is gas"
+        },
+        {
+          "category": "dining",
+          "rate": 5,
+          "notes": "Only one category earns 5% per cycle \u2014 whichever you spend most on"
+        },
+        {
+          "category": "groceries",
+          "rate": 5,
+          "notes": "Only one category earns 5% per cycle"
+        }
       ],
       "baseRate": 1,
       "source": "https://www.nerdwallet.com/credit-cards/best/gas"
@@ -187,12 +313,30 @@
       "rewardType": "points",
       "rotating": false,
       "categories": [
-        { "category": "gas", "rate": 3 },
-        { "category": "travel", "rate": 3 },
-        { "category": "dining", "rate": 3 },
-        { "category": "transit", "rate": 3 },
-        { "category": "streaming", "rate": 3 },
-        { "category": "phone_plans", "rate": 3 }
+        {
+          "category": "gas",
+          "rate": 3
+        },
+        {
+          "category": "travel",
+          "rate": 3
+        },
+        {
+          "category": "dining",
+          "rate": 3
+        },
+        {
+          "category": "transit",
+          "rate": 3
+        },
+        {
+          "category": "streaming",
+          "rate": 3
+        },
+        {
+          "category": "phone_plans",
+          "rate": 3
+        }
       ],
       "baseRate": 1,
       "source": "https://www.nerdwallet.com/credit-cards/best/gas"
@@ -204,9 +348,21 @@
       "rewardType": "cashback",
       "rotating": true,
       "categories": [
-        { "category": "gas", "rate": 5, "notes": "Q3 2026 rotating category (up to $1,500/quarter, activation required)" },
-        { "category": "transit", "rate": 5, "notes": "Q3 2026 rotating category" },
-        { "category": "drugstores", "rate": 5, "notes": "Q3 2026 rotating category" }
+        {
+          "category": "gas",
+          "rate": 5,
+          "notes": "Q3 2026 rotating category (up to $1,500/quarter, activation required)"
+        },
+        {
+          "category": "transit",
+          "rate": 5,
+          "notes": "Q3 2026 rotating category"
+        },
+        {
+          "category": "drugstores",
+          "rate": 5,
+          "notes": "Q3 2026 rotating category"
+        }
       ],
       "baseRate": 1,
       "source": "https://www.cnbc.com/select/chase-freedom-cash-back-calendar/"
@@ -218,9 +374,19 @@
       "rewardType": "cashback",
       "rotating": true,
       "categories": [
-        { "category": "gas", "rate": 3, "notes": "Pick 1 of: gas, online shopping, dining, travel, drugstores, home improvement/furnishings — up to $2,500/quarter combined w/ groceries" },
-        { "category": "groceries", "rate": 2 },
-        { "category": "wholesale_clubs", "rate": 2 }
+        {
+          "category": "gas",
+          "rate": 3,
+          "notes": "Pick 1 of: gas, online shopping, dining, travel, drugstores, home improvement/furnishings \u2014 up to $2,500/quarter combined w/ groceries"
+        },
+        {
+          "category": "groceries",
+          "rate": 2
+        },
+        {
+          "category": "wholesale_clubs",
+          "rate": 2
+        }
       ],
       "baseRate": 1,
       "source": "well-established terms; verify your chosen 3% category with issuer"
@@ -232,9 +398,19 @@
       "rewardType": "cashback",
       "rotating": true,
       "categories": [
-        { "category": "home_improvement", "rate": 5, "notes": "Choose 2 categories quarterly for 5% (up to $2,000 combined), example shown" },
-        { "category": "groceries", "rate": 2 },
-        { "category": "gas", "rate": 2 }
+        {
+          "category": "home_improvement",
+          "rate": 5,
+          "notes": "Choose 2 categories quarterly for 5% (up to $2,000 combined), example shown"
+        },
+        {
+          "category": "groceries",
+          "rate": 2
+        },
+        {
+          "category": "gas",
+          "rate": 2
+        }
       ],
       "baseRate": 1,
       "source": "well-established terms; verify your chosen 5% categories with issuer"
@@ -246,7 +422,11 @@
       "rewardType": "cashback",
       "rotating": false,
       "categories": [
-        { "category": "online_shopping", "rate": 3, "notes": "Apple purchases & select merchants via Apple Pay" }
+        {
+          "category": "online_shopping",
+          "rate": 3,
+          "notes": "Apple purchases & select merchants via Apple Pay"
+        }
       ],
       "baseRate": 1,
       "source": "well-established terms; verify with issuer"
@@ -258,10 +438,23 @@
       "rewardType": "cashback",
       "rotating": false,
       "categories": [
-        { "category": "online_shopping", "rate": 5, "notes": "Amazon.com & Whole Foods, requires Prime" },
-        { "category": "dining", "rate": 2 },
-        { "category": "gas", "rate": 2 },
-        { "category": "drugstores", "rate": 2 }
+        {
+          "category": "online_shopping",
+          "rate": 5,
+          "notes": "Amazon.com & Whole Foods, requires Prime"
+        },
+        {
+          "category": "dining",
+          "rate": 2
+        },
+        {
+          "category": "gas",
+          "rate": 2
+        },
+        {
+          "category": "drugstores",
+          "rate": 2
+        }
       ],
       "baseRate": 1,
       "source": "well-established terms; verify with issuer"
@@ -273,13 +466,100 @@
       "rewardType": "cashback",
       "rotating": false,
       "categories": [
-        { "category": "gas", "rate": 4, "notes": "Up to $7,000/yr, incl. EV charging, then 1%" },
-        { "category": "dining", "rate": 3 },
-        { "category": "travel", "rate": 3 },
-        { "category": "wholesale_clubs", "rate": 2, "notes": "Costco & Costco.com" }
+        {
+          "category": "gas",
+          "rate": 4,
+          "notes": "Up to $7,000/yr, incl. EV charging, then 1%"
+        },
+        {
+          "category": "dining",
+          "rate": 3
+        },
+        {
+          "category": "travel",
+          "rate": 3
+        },
+        {
+          "category": "wholesale_clubs",
+          "rate": 2,
+          "notes": "Costco & Costco.com"
+        }
       ],
       "baseRate": 1,
       "source": "well-established terms; verify with issuer"
+    },
+    {
+      "id": "amex-bce",
+      "name": "Blue Cash Everyday from American Express",
+      "issuer": "American Express",
+      "rewardType": "cashback",
+      "rotating": false,
+      "categories": [
+        {
+          "category": "groceries",
+          "rate": 3,
+          "notes": "U.S. supermarkets, up to $6,000/yr then 1%"
+        },
+        {
+          "category": "gas",
+          "rate": 3,
+          "notes": "U.S. gas stations, up to $6,000/yr then 1%"
+        },
+        {
+          "category": "online_shopping",
+          "rate": 3,
+          "notes": "U.S. online retail, up to $6,000/yr then 1%"
+        }
+      ],
+      "baseRate": 1,
+      "source": "https://www.cnbc.com/select/american-express-relaunches-blue-cash-everyday-card-new-benefits/"
+    },
+    {
+      "id": "amex-everyday",
+      "name": "Amex EveryDay Credit Card",
+      "issuer": "American Express",
+      "rewardType": "points",
+      "rotating": false,
+      "categories": [
+        {
+          "category": "groceries",
+          "rate": 2,
+          "notes": "U.S. supermarkets, up to $6,000/yr then 1x; +20% if 20+ purchases in a billing period"
+        },
+        {
+          "category": "travel",
+          "rate": 2,
+          "notes": "Booked via amextravel.com"
+        }
+      ],
+      "baseRate": 1,
+      "source": "https://onemileatatime.com/reviews/credit-cards/american-express/amex-everyday-card/"
+    },
+    {
+      "id": "navyfed-cashrewards",
+      "name": "Navy Federal cashRewards",
+      "issuer": "Navy Federal Credit Union",
+      "rewardType": "cashback",
+      "rotating": false,
+      "categories": [],
+      "baseRate": 1.5,
+      "source": "https://www.forbes.com/advisor/credit-cards/reviews/navy-federal-cashrewards/"
+    },
+    {
+      "id": "c1-ventureone",
+      "name": "Capital One VentureOne Rewards",
+      "issuer": "Capital One",
+      "rewardType": "miles",
+      "rotating": false,
+      "categories": [
+        {
+          "category": "travel",
+          "rate": 5,
+          "notes": "Hotels, vacation rentals & car rentals via Capital One Travel"
+        }
+      ],
+      "baseRate": 1.25,
+      "source": "https://www.capitalone.com/credit-cards/ventureone/"
     }
   ]
 }
