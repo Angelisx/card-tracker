@@ -177,3 +177,9 @@ code, .mono {
 }
 .login-box h1 { font-size: 18px; margin-top: 0; }
 .login-error { color: var(--danger); font-size: 13px; margin-top: 8px; min-height: 18px; }
+
+.apr-line {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+}

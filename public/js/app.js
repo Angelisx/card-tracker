@@ -68,11 +68,15 @@
   }
 
   function cardCardHtml(card, inWallet) {
+    const aprHtml = card.apr
+      ? `<div class="apr-line">APR: ${card.apr}</div>`
+      : "";
     return `
       <div class="card" data-card-id="${card.id}">
         <h3>${card.name}</h3>
         <div class="issuer">${card.issuer} · ${card.rewardType}${card.rotating ? " · rotating categories" : ""}</div>
         <div class="rates">${ratesPillHtml(card)}</div>
+        ${aprHtml}
         <div class="card-actions">
           <button class="btn ${inWallet ? "danger" : ""}" data-action="${inWallet ? "remove" : "add"}" data-id="${card.id}">
             ${inWallet ? "Remove from wallet" : "Add to wallet"}

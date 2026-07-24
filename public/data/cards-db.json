@@ -134,7 +134,9 @@
         }
       ],
       "baseRate": 1,
-      "source": "https://www.nerdwallet.com/credit-cards/best/restaurants"
+      "source": "https://www.nerdwallet.com/credit-cards/best/restaurants",
+      "apr": "0% intro (12 mo), then 18.49%\u201328.49% variable",
+      "aprSource": "https://www.capitalone.com/credit-cards/savor/"
     },
     {
       "id": "c1-savorone",
@@ -365,7 +367,9 @@
         }
       ],
       "baseRate": 1,
-      "source": "https://www.cnbc.com/select/chase-freedom-cash-back-calendar/"
+      "source": "https://www.cnbc.com/select/chase-freedom-cash-back-calendar/",
+      "apr": "0% intro (15 mo), then 17.49%\u201326.49% variable",
+      "aprSource": "https://www.discover.com/credit-cards/cash-back/it-card/"
     },
     {
       "id": "boa-customcash",
@@ -512,7 +516,9 @@
         }
       ],
       "baseRate": 1,
-      "source": "https://www.cnbc.com/select/american-express-relaunches-blue-cash-everyday-card-new-benefits/"
+      "source": "https://www.cnbc.com/select/american-express-relaunches-blue-cash-everyday-card-new-benefits/",
+      "apr": "0% intro (15 mo), then 19.49%\u201328.49% variable",
+      "aprSource": "https://www.nerdwallet.com/credit-cards/reviews/american-express-blue-cash-everyday"
     },
     {
       "id": "amex-everyday",
@@ -533,7 +539,9 @@
         }
       ],
       "baseRate": 1,
-      "source": "https://onemileatatime.com/reviews/credit-cards/american-express/amex-everyday-card/"
+      "source": "https://onemileatatime.com/reviews/credit-cards/american-express/amex-everyday-card/",
+      "apr": "0% intro (15 mo), then 17.74%\u201328.74% variable",
+      "aprSource": "https://upgradedpoints.com/credit-cards/reviews/amex-everyday-credit-card/"
     },
     {
       "id": "navyfed-cashrewards",
@@ -543,7 +551,9 @@
       "rotating": false,
       "categories": [],
       "baseRate": 1.5,
-      "source": "https://www.forbes.com/advisor/credit-cards/reviews/navy-federal-cashrewards/"
+      "source": "https://www.forbes.com/advisor/credit-cards/reviews/navy-federal-cashrewards/",
+      "apr": "14.15%\u201318.00% variable (no intro 0% APR offer)",
+      "aprSource": "https://www.navyfederal.org/content/dam/nfculibs/pdfs/credit-debit-cards/nfcu_573cash.pdf"
     },
     {
       "id": "c1-ventureone",
@@ -559,7 +569,9 @@
         }
       ],
       "baseRate": 1.25,
-      "source": "https://www.capitalone.com/credit-cards/ventureone/"
+      "source": "https://www.capitalone.com/credit-cards/ventureone/",
+      "apr": "0% intro (15 mo), then 18.74%\u201328.74% variable",
+      "aprSource": "https://www.capitalone.com/credit-cards/ventureone/"
     },
     {
       "id": "citi-simplicity",
@@ -569,7 +581,9 @@
       "rotating": false,
       "categories": [],
       "baseRate": 0,
-      "source": "No rewards program \u2014 0% intro APR / balance-transfer focused card. Tracked here for visibility only, not reward optimization."
+      "source": "No rewards program \u2014 0% intro APR / balance-transfer focused card. Tracked here for visibility only, not reward optimization.",
+      "apr": "0% intro (18 mo), then 17.49%\u201328.24% variable, no penalty APR",
+      "aprSource": "https://www.nerdwallet.com/reviews/credit-cards/citi-simplicity"
     },
     {
       "id": "carecredit",
@@ -579,17 +593,21 @@
       "rotating": false,
       "categories": [],
       "baseRate": 0,
-      "source": "Healthcare/veterinary financing card, no general rewards program. Tracked here for visibility only."
+      "source": "Healthcare/veterinary financing card, no general rewards program. Tracked here for visibility only.",
+      "apr": "32.99% standard (39.99% penalty APR); promo plans: 0% deferred interest (6/12/18/24 mo, interest charged retroactively if not paid in full) or reduced fixed APR ~14.9%\u201317.9% on longer terms",
+      "aprSource": "https://www.carecredit.com/well-u/financial-health/deferred-interest-vs-apr/"
     },
     {
       "id": "petland",
       "name": "Petland Credit Card",
-      "issuer": "Synchrony",
+      "issuer": "Comenity Bank (Petland)",
       "rewardType": "none",
       "rotating": false,
       "categories": [],
       "baseRate": 0,
-      "source": "Petland store-financing card, no general rewards program. Tracked here for visibility only."
+      "source": "Petland store-financing card, no general rewards program. Tracked here for visibility only.",
+      "apr": "35.99% variable standard; promo plans: 5.99%\u20139.99% fixed (18\u201360 mo) or 0% deferred interest (6/12/24 mo, interest charged retroactively if not paid in full)",
+      "aprSource": "https://d.comenity.net/ac/petland/public/help/apr-and-fees"
     }
   ]
 }
