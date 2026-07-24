@@ -3,6 +3,7 @@
 
   let cardsDb = null;
   let wallet = { cardIds: [], customCards: [] };
+  let photoCardIds = new Set();
 
   const el = (id) => document.getElementById(id);
 
@@ -52,6 +53,70 @@
   async function loadWallet() {
     const res = await fetch("/api/my-cards");
     wallet = await res.json();
+  }
+
+  async function loadPhotoList() {
+    try {
+      const res = await fetch("/api/card-photo");
+      if (!res.ok) return;
+      const data = await res.json();
+      photoCardIds = new Set(data.cardIds || []);
+    } catch {
+      // ignore
+    }
+  }
+
+  // Resize/compress an image file client-side before upload, so we never
+  // send more than ~a few hundred KB to Blobs storage.
+  function resizeImageFile(file, maxWidth = 500, quality = 0.82) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      const reader = new FileReader();
+      reader.onerror = reject;
+      reader.onload = () => {
+        img.onerror = reject;
+        img.onload = () => {
+          const scale = Math.min(1, maxWidth / img.width);
+          const canvas = document.createElement("canvas");
+          canvas.width = Math.round(img.width * scale);
+          canvas.height = Math.round(img.height * scale);
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          resolve(canvas.toDataURL("image/jpeg", quality));
+        };
+        img.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function uploadCardPhoto(cardId, file) {
+    const dataUrl = await resizeImageFile(file);
+    const res = await fetch("/api/card-photo", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ cardId, dataUrl }),
+    });
+    if (!res.ok) {
+      toast("Could not upload photo");
+      return;
+    }
+    photoCardIds.add(cardId);
+    toast("Photo saved");
+    renderWallet();
+    renderBrowse(el("browseSearch").value);
+  }
+
+  async function removeCardPhoto(cardId) {
+    const res = await fetch(`/api/card-photo?cardId=${encodeURIComponent(cardId)}`, { method: "DELETE" });
+    if (!res.ok) {
+      toast("Could not remove photo");
+      return;
+    }
+    photoCardIds.delete(cardId);
+    toast("Photo removed");
+    renderWallet();
+    renderBrowse(el("browseSearch").value);
   }
 
   function cardById(id) {
@@ -144,6 +209,12 @@
   }
 
   function cardVisualHtml(card) {
+    if (photoCardIds.has(card.id)) {
+      return `
+        <div class="card-visual has-photo">
+          <img src="/api/card-photo?cardId=${encodeURIComponent(card.id)}&t=${Date.now()}" alt="${card.name}">
+        </div>`;
+    }
     const [c1, c2] = CARD_GRADIENTS[hashString(card.id) % CARD_GRADIENTS.length];
     return `
       <div class="card-visual" style="background: linear-gradient(135deg, ${c1}, ${c2});">
@@ -155,6 +226,18 @@
       </div>`;
   }
 
+  function photoControlHtml(card) {
+    const hasPhoto = photoCardIds.has(card.id);
+    return `
+      <div class="photo-control">
+        <label class="photo-upload-label">
+          ${hasPhoto ? "Change photo" : "Add your own photo"}
+          <input type="file" accept="image/*" class="photo-input" data-photo-id="${card.id}" hidden>
+        </label>
+        ${hasPhoto ? `<button type="button" class="photo-remove-btn" data-photo-remove="${card.id}">Remove</button>` : ""}
+      </div>`;
+  }
+
   function cardCardHtml(card, inWallet) {
     const aprHtml = card.apr
       ? `<div class="apr-line">APR: ${card.apr}</div>`
@@ -162,6 +245,7 @@
     return `
       <div class="card" data-card-id="${card.id}">
         ${cardVisualHtml(card)}
+        ${photoControlHtml(card)}
         <h3>${card.name}</h3>
         <div class="issuer">${card.issuer} · ${card.rewardType}${card.rotating ? " · rotating categories" : ""}</div>
         <div class="rates">${ratesPillHtml(card)}</div>
@@ -228,10 +312,22 @@
   }
 
   function bindGridClicks(gridId) {
-    el(gridId).addEventListener("click", (e) => {
+    const grid = el(gridId);
+    grid.addEventListener("click", (e) => {
       const btn = e.target.closest("button[data-action]");
-      if (!btn) return;
-      toggleCard(btn.dataset.id, btn.dataset.action);
+      if (btn) {
+        toggleCard(btn.dataset.id, btn.dataset.action);
+        return;
+      }
+      const removeBtn = e.target.closest("button[data-photo-remove]");
+      if (removeBtn) {
+        removeCardPhoto(removeBtn.dataset.photoRemove);
+      }
+    });
+    grid.addEventListener("change", (e) => {
+      const input = e.target.closest("input[data-photo-id]");
+      if (!input || !input.files || !input.files[0]) return;
+      uploadCardPhoto(input.dataset.photoId, input.files[0]);
     });
   }
 
@@ -351,6 +447,7 @@
     loadSortState();
     await loadCardsDb();
     await loadWallet();
+    await loadPhotoList();
     await loadSettings();
     renderWallet();
     renderBrowse("");

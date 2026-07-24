@@ -251,3 +251,36 @@ code, .mono {
   font-weight: 600;
   line-height: 1.25;
 }
+
+.card-visual.has-photo {
+  padding: 0;
+  overflow: hidden;
+  background: #0b0d11;
+}
+.card-visual.has-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.photo-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.photo-upload-label {
+  font-size: 12px;
+  color: var(--accent);
+  cursor: pointer;
+  text-decoration: underline;
+}
+.photo-remove-btn {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
