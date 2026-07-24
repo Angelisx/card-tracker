@@ -6,6 +6,25 @@
 
   const el = (id) => document.getElementById(id);
 
+  const sortState = {
+    wallet: { sort: "name", ignoreIntro: false },
+    browse: { sort: "name", ignoreIntro: false },
+  };
+
+  function loadSortState() {
+    try {
+      const saved = JSON.parse(localStorage.getItem("cardTrackerSortState") || "{}");
+      if (saved.wallet) Object.assign(sortState.wallet, saved.wallet);
+      if (saved.browse) Object.assign(sortState.browse, saved.browse);
+    } catch {
+      // ignore
+    }
+  }
+
+  function saveSortState() {
+    localStorage.setItem("cardTrackerSortState", JSON.stringify(sortState));
+  }
+
   function toast(msg) {
     const t = el("toast");
     t.textContent = msg;
@@ -58,6 +77,36 @@
     return result;
   }
 
+  // Returns a numeric APR to sort on, or null if the card has no APR data.
+  function sortApr(card, ignoreIntro) {
+    if (!card.aprData) return null;
+    const { introRate, regularMin, regularMax } = card.aprData;
+    if (!ignoreIntro && introRate !== null && introRate !== undefined) {
+      return introRate;
+    }
+    if (regularMin == null || regularMax == null) return null;
+    return (regularMin + regularMax) / 2;
+  }
+
+  function sortCards(cards, sort, ignoreIntro) {
+    const copy = [...cards];
+    if (sort === "name") {
+      copy.sort((a, b) => a.name.localeCompare(b.name));
+      return copy;
+    }
+    const dir = sort === "apr-desc" ? -1 : 1;
+    copy.sort((a, b) => {
+      const aApr = sortApr(a, ignoreIntro);
+      const bApr = sortApr(b, ignoreIntro);
+      if (aApr === null && bApr === null) return a.name.localeCompare(b.name);
+      if (aApr === null) return 1; // cards with no APR data always sort last
+      if (bApr === null) return -1;
+      if (aApr === bApr) return a.name.localeCompare(b.name);
+      return (aApr - bApr) * dir;
+    });
+    return copy;
+  }
+
   function ratesPillHtml(card) {
     const top = [...card.categories].sort((a, b) => b.rate - a.rate).slice(0, 4);
     let html = top
@@ -87,20 +136,22 @@
 
   function renderWallet() {
     const grid = el("walletGrid");
-    const myCards = wallet.cardIds.map(cardById).filter(Boolean);
+    let myCards = wallet.cardIds.map(cardById).filter(Boolean);
     if (myCards.length === 0) {
       grid.innerHTML = `<div class="empty">No cards yet. Go to <strong>Browse Cards</strong> and add the ones you own.</div>`;
       return;
     }
+    myCards = sortCards(myCards, sortState.wallet.sort, sortState.wallet.ignoreIntro);
     grid.innerHTML = myCards.map((c) => cardCardHtml(c, true)).join("");
   }
 
   function renderBrowse(filter) {
     const grid = el("browseGrid");
     const q = (filter || "").toLowerCase();
-    const cards = cardsDb.cards.filter(
+    let cards = cardsDb.cards.filter(
       (c) => c.name.toLowerCase().includes(q) || c.issuer.toLowerCase().includes(q)
     );
+    cards = sortCards(cards, sortState.browse.sort, sortState.browse.ignoreIntro);
     grid.innerHTML = cards
       .map((c) => cardCardHtml(c, wallet.cardIds.includes(c.id)))
       .join("");
@@ -175,6 +226,33 @@
     });
   }
 
+  function bindSortControls() {
+    el("walletSort").value = sortState.wallet.sort;
+    el("walletIgnoreIntro").checked = sortState.wallet.ignoreIntro;
+    el("browseSort").value = sortState.browse.sort;
+    el("browseIgnoreIntro").checked = sortState.browse.ignoreIntro;
+
+    el("walletSort").addEventListener("change", (e) => {
+      sortState.wallet.sort = e.target.value;
+      saveSortState();
+      renderWallet();
+    });
+    el("walletIgnoreIntro").addEventListener("change", (e) => {
+      sortState.wallet.ignoreIntro = e.target.checked;
+      saveSortState();
+      renderWallet();
+    });
+    el("browseSort").addEventListener("change", (e) => {
+      sortState.browse.sort = e.target.value;
+      saveSortState();
+      renderBrowse(el("browseSearch").value);
+    });
+    el("browseIgnoreIntro").addEventListener("change", (e) => {
+      sortState.browse.ignoreIntro = e.target.checked;
+      saveSortState();
+      renderBrowse(el("browseSearch").value);
+    });
+  }
 
   function standingColor(standing) {
     if (standing === "EXCELLENT" || standing === "GOOD") return "var(--good)";
@@ -230,6 +308,7 @@
   async function init() {
     const ok = await requireAuth();
     if (!ok) return;
+    loadSortState();
     await loadCardsDb();
     await loadWallet();
     await loadSettings();
@@ -241,6 +320,7 @@
     bindGridClicks("walletGrid");
     bindGridClicks("browseGrid");
     bindSettings();
+    bindSortControls();
     bindLogout();
     bindSearch();
     el("mcpUrl").textContent = window.location.origin + "/mcp";

@@ -27,12 +27,41 @@
   </div>
 
   <div class="panel active" id="panel-wallet">
+    <div class="toolbar">
+      <div class="field" style="margin-bottom:0">
+        <label for="walletSort">Sort by</label>
+        <select id="walletSort">
+          <option value="name">Name (A-Z)</option>
+          <option value="apr-asc">APR (low to high)</option>
+          <option value="apr-desc">APR (high to low)</option>
+        </select>
+      </div>
+      <label class="checkbox-label">
+        <input type="checkbox" id="walletIgnoreIntro">
+        Ignore intro 0% APR (sort by ongoing rate)
+      </label>
+    </div>
     <div id="walletGrid" class="grid"></div>
   </div>
 
   <div class="panel" id="panel-browse">
-    <div class="field" style="max-width:320px">
-      <input type="text" id="browseSearch" placeholder="Search cards or issuer...">
+    <div class="toolbar">
+      <div class="field" style="max-width:320px; margin-bottom:0">
+        <label for="browseSearch">Search</label>
+        <input type="text" id="browseSearch" placeholder="Search cards or issuer...">
+      </div>
+      <div class="field" style="margin-bottom:0">
+        <label for="browseSort">Sort by</label>
+        <select id="browseSort">
+          <option value="name">Name (A-Z)</option>
+          <option value="apr-asc">APR (low to high)</option>
+          <option value="apr-desc">APR (high to low)</option>
+        </select>
+      </div>
+      <label class="checkbox-label">
+        <input type="checkbox" id="browseIgnoreIntro">
+        Ignore intro 0% APR (sort by ongoing rate)
+      </label>
     </div>
     <div id="browseGrid" class="grid"></div>
   </div>
