@@ -560,6 +560,36 @@
       ],
       "baseRate": 1.25,
       "source": "https://www.capitalone.com/credit-cards/ventureone/"
+    },
+    {
+      "id": "citi-simplicity",
+      "name": "Citi Simplicity",
+      "issuer": "Citi",
+      "rewardType": "none",
+      "rotating": false,
+      "categories": [],
+      "baseRate": 0,
+      "source": "No rewards program \u2014 0% intro APR / balance-transfer focused card. Tracked here for visibility only, not reward optimization."
+    },
+    {
+      "id": "carecredit",
+      "name": "CareCredit Credit Card",
+      "issuer": "Synchrony",
+      "rewardType": "none",
+      "rotating": false,
+      "categories": [],
+      "baseRate": 0,
+      "source": "Healthcare/veterinary financing card, no general rewards program. Tracked here for visibility only."
+    },
+    {
+      "id": "petland",
+      "name": "Petland Credit Card",
+      "issuer": "Synchrony",
+      "rewardType": "none",
+      "rotating": false,
+      "categories": [],
+      "baseRate": 0,
+      "source": "Petland store-financing card, no general rewards program. Tracked here for visibility only."
     }
   ]
 }
