@@ -58,3 +58,35 @@ export async function fireWebhook(wallet: WalletData) {
     console.error("webhook delivery failed", err);
   }
 }
+
+const CREDIT_KEY = "credit-snapshot";
+
+export interface CreditFactor {
+  factorName: string;
+  impactLevel: string;
+  standing: string;
+}
+
+export interface CreditSnapshot {
+  scoreBand: string;
+  factors: CreditFactor[];
+  source: string;
+  updatedAt: string;
+}
+
+export async function getCreditSnapshot(): Promise<CreditSnapshot | null> {
+  const store = walletStore();
+  return (await store.get(CREDIT_KEY, { type: "json" })) || null;
+}
+
+export async function setCreditSnapshot(scoreBand: string, factors: CreditFactor[]): Promise<CreditSnapshot> {
+  const store = walletStore();
+  const snapshot: CreditSnapshot = {
+    scoreBand,
+    factors,
+    source: "Credit Karma (TransUnion VantageScore 3.0) via Claude",
+    updatedAt: new Date().toISOString(),
+  };
+  await store.setJSON(CREDIT_KEY, snapshot);
+  return snapshot;
+}

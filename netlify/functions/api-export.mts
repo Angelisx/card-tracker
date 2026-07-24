@@ -1,6 +1,6 @@
 import type { Config, Context } from "@netlify/functions";
 import { isAuthorized } from "./_lib/auth.mts";
-import { getWallet } from "./_lib/store.mts";
+import { getWallet, getCreditSnapshot } from "./_lib/store.mts";
 import { allCards, cardById, bestCardPerCategory } from "./_lib/cards.mts";
 
 function toCsv(rows: Record<string, any>[]): string {
@@ -22,6 +22,7 @@ export default async (req: Request, _context: Context) => {
   const wallet = await getWallet();
   const myCards = wallet.cardIds.map(cardById).filter(Boolean).concat(wallet.customCards as any);
   const recommendations = bestCardPerCategory(wallet.cardIds, wallet.customCards);
+  const creditSnapshot = await getCreditSnapshot();
 
   const url = new URL(req.url);
   const format = url.searchParams.get("format") || "json";
@@ -45,6 +46,7 @@ export default async (req: Request, _context: Context) => {
     myCards,
     bestCardByCategory: recommendations,
     allCardsAvailable: allCards().length,
+    creditSnapshot,
   });
 };
 

@@ -1,6 +1,6 @@
 import type { Config, Context } from "@netlify/functions";
 import { isAuthorized } from "./_lib/auth.mts";
-import { getWallet, setWallet, fireWebhook } from "./_lib/store.mts";
+import { getWallet, setWallet, fireWebhook, getCreditSnapshot } from "./_lib/store.mts";
 import { allCards, cardById, bestCardPerCategory, allCategories } from "./_lib/cards.mts";
 
 const TOOLS = [
@@ -51,6 +51,11 @@ const TOOLS = [
       required: ["cardId"],
     },
   },
+  {
+    name: "get_credit_score",
+    description: "Get the user's most recently synced credit score band and factors (snapshot, not live).",
+    inputSchema: { type: "object", properties: {} },
+  },
 ];
 
 async function callTool(name: string, args: any) {
@@ -90,6 +95,8 @@ async function callTool(name: string, args: any) {
       await fireWebhook(updated);
       return { ok: true, wallet: updated };
     }
+    case "get_credit_score":
+      return { creditSnapshot: await getCreditSnapshot() };
     default:
       throw new Error(`Unknown tool: ${name}`);
   }

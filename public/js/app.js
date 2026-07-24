@@ -171,6 +171,47 @@
     });
   }
 
+
+  function standingColor(standing) {
+    if (standing === "EXCELLENT" || standing === "GOOD") return "var(--good)";
+    if (standing === "NEEDS_WORK") return "var(--danger)";
+    return "var(--text-dim)";
+  }
+
+  async function loadCredit() {
+    const container = el("creditContent");
+    try {
+      const res = await fetch("/api/credit-score");
+      if (!res.ok) throw new Error("failed");
+      const snap = await res.json();
+      if (!snap) {
+        container.innerHTML = `<div class="empty">No credit score synced yet. Ask Claude (with Credit Karma connected) to sync it.</div>`;
+        return;
+      }
+      const factorRows = snap.factors
+        .map(
+          (f) => `<tr>
+            <td>${f.factorName.replace(/_/g, " ")}</td>
+            <td>${f.impactLevel}</td>
+            <td style="color:${standingColor(f.standing)}">${f.standing.replace(/_/g, " ")}</td>
+          </tr>`
+        )
+        .join("");
+      container.innerHTML = `
+        <div class="settings-block">
+          <h3>Score band: ${snap.scoreBand}</h3>
+          <p class="sub">${snap.source} · synced ${new Date(snap.updatedAt).toLocaleString()}</p>
+        </div>
+        <table class="rec-table">
+          <thead><tr><th>Factor</th><th>Impact</th><th>Standing</th></tr></thead>
+          <tbody>${factorRows}</tbody>
+        </table>
+      `;
+    } catch {
+      container.innerHTML = `<div class="empty">Could not load credit data.</div>`;
+    }
+  }
+
   function bindLogout() {
     el("logoutBtn").addEventListener("click", async () => {
       await fetch("/api/auth", { method: "DELETE" });
@@ -191,6 +232,7 @@
     renderWallet();
     renderBrowse("");
     renderBest();
+    loadCredit();
     bindTabs();
     bindGridClicks("walletGrid");
     bindGridClicks("browseGrid");
