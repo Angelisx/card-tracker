@@ -1,0 +1,285 @@
+{
+  "lastVerified": "2026-07-24",
+  "note": "Reward rates researched July 2026 from issuer sites and NerdWallet/CNBC/Forbes roundups. Rotating categories (Discover it, Chase Freedom Flex, Citi Custom Cash) change quarterly/monthly and must be kept current manually in Settings > Edit Card Database. Always confirm current terms with the issuer before relying on this for real spending decisions.",
+  "categories": [
+    "dining", "groceries", "gas", "travel", "drugstores", "streaming",
+    "transit", "entertainment", "online_shopping", "home_improvement",
+    "wholesale_clubs", "phone_plans", "other"
+  ],
+  "cards": [
+    {
+      "id": "csp",
+      "name": "Chase Sapphire Preferred",
+      "issuer": "Chase",
+      "rewardType": "points",
+      "rotating": false,
+      "categories": [
+        { "category": "travel", "rate": 5, "notes": "Chase Travel portal; 2x other travel" },
+        { "category": "dining", "rate": 3 },
+        { "category": "streaming", "rate": 3 },
+        { "category": "groceries", "rate": 3, "notes": "Online groceries only" },
+        { "category": "gas", "rate": 3, "notes": "Includes EV charging" }
+      ],
+      "baseRate": 1,
+      "source": "https://www.nerdwallet.com/credit-cards/best/travel"
+    },
+    {
+      "id": "cfu",
+      "name": "Chase Freedom Unlimited",
+      "issuer": "Chase",
+      "rewardType": "cashback",
+      "rotating": false,
+      "categories": [
+        { "category": "dining", "rate": 3 },
+        { "category": "drugstores", "rate": 3 },
+        { "category": "travel", "rate": 5, "notes": "Chase Travel portal only" }
+      ],
+      "baseRate": 1.5,
+      "source": "https://upgradedpoints.com/credit-cards/chase-freedom-unlimited-vs-amex-gold-card/"
+    },
+    {
+      "id": "cff",
+      "name": "Chase Freedom Flex",
+      "issuer": "Chase",
+      "rewardType": "cashback",
+      "rotating": true,
+      "categories": [
+        { "category": "dining", "rate": 3 },
+        { "category": "drugstores", "rate": 3 },
+        { "category": "gas", "rate": 5, "notes": "Q3 2026 rotating category (up to $1,500/quarter, activation required)" },
+        { "category": "transit", "rate": 5, "notes": "Q3 2026 rotating category" },
+        { "category": "entertainment", "rate": 5, "notes": "Q3 2026 rotating: select live entertainment" }
+      ],
+      "baseRate": 1,
+      "source": "https://www.forbes.com/advisor/credit-cards/chase-freedom-flex-q3-bonus-categories-2026-lmandp5/"
+    },
+    {
+      "id": "c1-savor",
+      "name": "Capital One Savor Cash Rewards",
+      "issuer": "Capital One",
+      "rewardType": "cashback",
+      "rotating": false,
+      "categories": [
+        { "category": "dining", "rate": 3 },
+        { "category": "groceries", "rate": 3 },
+        { "category": "entertainment", "rate": 3 },
+        { "category": "streaming", "rate": 3 }
+      ],
+      "baseRate": 1,
+      "source": "https://www.nerdwallet.com/credit-cards/best/restaurants"
+    },
+    {
+      "id": "c1-savorone",
+      "name": "Capital One SavorOne",
+      "issuer": "Capital One",
+      "rewardType": "cashback",
+      "rotating": false,
+      "categories": [
+        { "category": "dining", "rate": 3 },
+        { "category": "groceries", "rate": 3 },
+        { "category": "entertainment", "rate": 3 },
+        { "category": "streaming", "rate": 3 }
+      ],
+      "baseRate": 1,
+      "source": "well-established no-annual-fee version of Savor; verify current terms with issuer"
+    },
+    {
+      "id": "c1-venturex",
+      "name": "Capital One Venture X",
+      "issuer": "Capital One",
+      "rewardType": "miles",
+      "rotating": false,
+      "categories": [
+        { "category": "travel", "rate": 5, "notes": "Flights & vacation rentals via Capital One Travel" },
+        { "category": "entertainment", "rate": 5, "notes": "Capital One Entertainment purchases" }
+      ],
+      "baseRate": 2,
+      "source": "https://www.cnbc.com/select/capital-one-venture-x-vs-american-express-platinum/"
+    },
+    {
+      "id": "c1-quicksilver",
+      "name": "Capital One Quicksilver",
+      "issuer": "Capital One",
+      "rewardType": "cashback",
+      "rotating": false,
+      "categories": [],
+      "baseRate": 1.5,
+      "source": "flat-rate card, well-established terms; verify with issuer"
+    },
+    {
+      "id": "amex-gold",
+      "name": "American Express Gold",
+      "issuer": "American Express",
+      "rewardType": "points",
+      "rotating": false,
+      "categories": [
+        { "category": "dining", "rate": 4, "notes": "Up to $50,000/yr, then 1x" },
+        { "category": "groceries", "rate": 4, "notes": "U.S. supermarkets, up to $25,000/yr" }
+      ],
+      "baseRate": 1,
+      "source": "https://upgradedpoints.com/credit-cards/chase-freedom-unlimited-vs-amex-gold-card/"
+    },
+    {
+      "id": "amex-platinum",
+      "name": "American Express Platinum",
+      "issuer": "American Express",
+      "rewardType": "points",
+      "rotating": false,
+      "categories": [
+        { "category": "travel", "rate": 5, "notes": "Flights booked directly/Amex Travel up to $500,000/yr, then 1x; prepaid hotels via Amex Travel" }
+      ],
+      "baseRate": 1,
+      "source": "https://www.cnbc.com/select/capital-one-venture-x-vs-american-express-platinum/"
+    },
+    {
+      "id": "amex-bcp",
+      "name": "Amex Blue Cash Preferred",
+      "issuer": "American Express",
+      "rewardType": "cashback",
+      "rotating": false,
+      "categories": [
+        { "category": "groceries", "rate": 6, "notes": "U.S. supermarkets, up to $6,000/yr then 1%" },
+        { "category": "streaming", "rate": 6, "notes": "Select U.S. streaming subscriptions" },
+        { "category": "transit", "rate": 3 },
+        { "category": "gas", "rate": 3 }
+      ],
+      "baseRate": 1,
+      "source": "https://www.nerdwallet.com/credit-cards/best/groceries"
+    },
+    {
+      "id": "citi-doublecash",
+      "name": "Citi Double Cash",
+      "issuer": "Citi",
+      "rewardType": "cashback",
+      "rotating": false,
+      "categories": [],
+      "baseRate": 2,
+      "source": "https://upgradedpoints.com/credit-cards/citi-double-cash-card-vs-wells-fargo-active-cash-card/"
+    },
+    {
+      "id": "citi-customcash",
+      "name": "Citi Custom Cash",
+      "issuer": "Citi",
+      "rewardType": "cashback",
+      "rotating": true,
+      "categories": [
+        { "category": "gas", "rate": 5, "notes": "Auto-picks your top eligible spend category each billing cycle, up to $500; example shown is gas" },
+        { "category": "dining", "rate": 5, "notes": "Only one category earns 5% per cycle — whichever you spend most on" },
+        { "category": "groceries", "rate": 5, "notes": "Only one category earns 5% per cycle" }
+      ],
+      "baseRate": 1,
+      "source": "https://www.nerdwallet.com/credit-cards/best/gas"
+    },
+    {
+      "id": "wf-activecash",
+      "name": "Wells Fargo Active Cash",
+      "issuer": "Wells Fargo",
+      "rewardType": "cashback",
+      "rotating": false,
+      "categories": [],
+      "baseRate": 2,
+      "source": "https://www.fool.com/money/credit-cards/articles/citi-double-cash-vs-wells-fargo-active-cash-which-is-better-in-may-2026/"
+    },
+    {
+      "id": "wf-autograph",
+      "name": "Wells Fargo Autograph",
+      "issuer": "Wells Fargo",
+      "rewardType": "points",
+      "rotating": false,
+      "categories": [
+        { "category": "gas", "rate": 3 },
+        { "category": "travel", "rate": 3 },
+        { "category": "dining", "rate": 3 },
+        { "category": "transit", "rate": 3 },
+        { "category": "streaming", "rate": 3 },
+        { "category": "phone_plans", "rate": 3 }
+      ],
+      "baseRate": 1,
+      "source": "https://www.nerdwallet.com/credit-cards/best/gas"
+    },
+    {
+      "id": "discover-it",
+      "name": "Discover it Cash Back",
+      "issuer": "Discover",
+      "rewardType": "cashback",
+      "rotating": true,
+      "categories": [
+        { "category": "gas", "rate": 5, "notes": "Q3 2026 rotating category (up to $1,500/quarter, activation required)" },
+        { "category": "transit", "rate": 5, "notes": "Q3 2026 rotating category" },
+        { "category": "drugstores", "rate": 5, "notes": "Q3 2026 rotating category" }
+      ],
+      "baseRate": 1,
+      "source": "https://www.cnbc.com/select/chase-freedom-cash-back-calendar/"
+    },
+    {
+      "id": "boa-customcash",
+      "name": "Bank of America Customized Cash Rewards",
+      "issuer": "Bank of America",
+      "rewardType": "cashback",
+      "rotating": true,
+      "categories": [
+        { "category": "gas", "rate": 3, "notes": "Pick 1 of: gas, online shopping, dining, travel, drugstores, home improvement/furnishings — up to $2,500/quarter combined w/ groceries" },
+        { "category": "groceries", "rate": 2 },
+        { "category": "wholesale_clubs", "rate": 2 }
+      ],
+      "baseRate": 1,
+      "source": "well-established terms; verify your chosen 3% category with issuer"
+    },
+    {
+      "id": "usbank-cashplus",
+      "name": "U.S. Bank Cash+",
+      "issuer": "U.S. Bank",
+      "rewardType": "cashback",
+      "rotating": true,
+      "categories": [
+        { "category": "home_improvement", "rate": 5, "notes": "Choose 2 categories quarterly for 5% (up to $2,000 combined), example shown" },
+        { "category": "groceries", "rate": 2 },
+        { "category": "gas", "rate": 2 }
+      ],
+      "baseRate": 1,
+      "source": "well-established terms; verify your chosen 5% categories with issuer"
+    },
+    {
+      "id": "apple-card",
+      "name": "Apple Card",
+      "issuer": "Goldman Sachs / Apple",
+      "rewardType": "cashback",
+      "rotating": false,
+      "categories": [
+        { "category": "online_shopping", "rate": 3, "notes": "Apple purchases & select merchants via Apple Pay" }
+      ],
+      "baseRate": 1,
+      "source": "well-established terms; verify with issuer"
+    },
+    {
+      "id": "amazon-prime-visa",
+      "name": "Amazon Prime Visa",
+      "issuer": "Chase",
+      "rewardType": "cashback",
+      "rotating": false,
+      "categories": [
+        { "category": "online_shopping", "rate": 5, "notes": "Amazon.com & Whole Foods, requires Prime" },
+        { "category": "dining", "rate": 2 },
+        { "category": "gas", "rate": 2 },
+        { "category": "drugstores", "rate": 2 }
+      ],
+      "baseRate": 1,
+      "source": "well-established terms; verify with issuer"
+    },
+    {
+      "id": "costco-anywhere",
+      "name": "Costco Anywhere Visa",
+      "issuer": "Citi",
+      "rewardType": "cashback",
+      "rotating": false,
+      "categories": [
+        { "category": "gas", "rate": 4, "notes": "Up to $7,000/yr, incl. EV charging, then 1%" },
+        { "category": "dining", "rate": 3 },
+        { "category": "travel", "rate": 3 },
+        { "category": "wholesale_clubs", "rate": 2, "notes": "Costco & Costco.com" }
+      ],
+      "baseRate": 1,
+      "source": "well-established terms; verify with issuer"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Card Tracker — Sign in</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="login-wrap">
+  <form class="login-box" id="loginForm">
+    <h1>Card Tracker</h1>
+    <div class="field">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" autofocus required>
+    </div>
+    <button class="btn" type="submit" style="width:100%">Sign in</button>
+    <div class="login-error" id="loginError"></div>
+  </form>
+</div>
+<script>
+  document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const password = document.getElementById('password').value;
+    const errorEl = document.getElementById('loginError');
+    errorEl.textContent = '';
+    try {
+      const res = await fetch('/api/auth', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ password })
+      });
+      if (res.ok) {
+        window.location.href = '/';
+      } else {
+        const data = await res.json().catch(() => ({}));
+        errorEl.textContent = data.error || 'Incorrect password';
+      }
+    } catch (err) {
+      errorEl.textContent = 'Something went wrong. Try again.';
+    }
+  });
+</script>
+</body>
+</html>

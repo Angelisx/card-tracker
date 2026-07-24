@@ -1,0 +1,13 @@
+{
+  "name": "card-tracker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal credit card reward-category tracker with JSON/CSV export, webhook, and MCP endpoint.",
+  "scripts": {
+    "dev": "netlify dev"
+  },
+  "dependencies": {
+    "@netlify/functions": "^2.8.1",
+    "@netlify/blobs": "^8.1.0"
+  }
+}
