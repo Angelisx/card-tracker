@@ -116,12 +116,52 @@
     return html;
   }
 
+  // Curated gradient palette. Cards get a deterministic pick based on their id,
+  // so the same card always looks the same, and different cards from the same
+  // issuer still look distinct. These are original designs, not reproductions
+  // of actual issuer card art (which is trademarked/copyrighted).
+  const CARD_GRADIENTS = [
+    ["#4f46e5", "#0ea5e9"],
+    ["#0f172a", "#334155"],
+    ["#b91c1c", "#f97316"],
+    ["#065f46", "#10b981"],
+    ["#7c2d12", "#d97706"],
+    ["#581c87", "#c026d3"],
+    ["#1e3a8a", "#3b82f6"],
+    ["#78350f", "#eab308"],
+    ["#111827", "#6b7280"],
+    ["#9d174d", "#ec4899"],
+    ["#134e4a", "#14b8a6"],
+    ["#7f1d1d", "#ef4444"],
+  ];
+
+  function hashString(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      hash = (hash * 31 + str.charCodeAt(i)) >>> 0;
+    }
+    return hash;
+  }
+
+  function cardVisualHtml(card) {
+    const [c1, c2] = CARD_GRADIENTS[hashString(card.id) % CARD_GRADIENTS.length];
+    return `
+      <div class="card-visual" style="background: linear-gradient(135deg, ${c1}, ${c2});">
+        <div class="cv-top">
+          <div class="cv-issuer">${card.issuer}</div>
+          <div class="cv-chip"></div>
+        </div>
+        <div class="cv-name">${card.name}</div>
+      </div>`;
+  }
+
   function cardCardHtml(card, inWallet) {
     const aprHtml = card.apr
       ? `<div class="apr-line">APR: ${card.apr}</div>`
       : "";
     return `
       <div class="card" data-card-id="${card.id}">
+        ${cardVisualHtml(card)}
         <h3>${card.name}</h3>
         <div class="issuer">${card.issuer} · ${card.rewardType}${card.rotating ? " · rotating categories" : ""}</div>
         <div class="rates">${ratesPillHtml(card)}</div>

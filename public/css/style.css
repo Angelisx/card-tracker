@@ -216,3 +216,38 @@ code, .mono {
   accent-color: var(--accent);
   cursor: pointer;
 }
+
+.card-visual {
+  aspect-ratio: 1.586 / 1;
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+.cv-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.cv-issuer {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.9;
+}
+.cv-chip {
+  width: 30px;
+  height: 22px;
+  border-radius: 4px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.55));
+}
+.cv-name {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.25;
+}
