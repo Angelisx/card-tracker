@@ -7,6 +7,12 @@
 
   const el = (id) => document.getElementById(id);
 
+  function escapeHtml(str) {
+    const div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
   const sortState = {
     wallet: { sort: "name", ignoreIntro: false },
     browse: { sort: "name", ignoreIntro: false },
@@ -45,6 +51,7 @@
 
   async function loadCardsDb() {
     const res = await fetch("/data/cards-db.json");
+    if (!res.ok) throw new Error("Failed to load card database");
     cardsDb = await res.json();
     el("dbNote").textContent =
       `Reward data last checked ${cardsDb.lastVerified}. ${cardsDb.note}`;
@@ -52,7 +59,18 @@
 
   async function loadWallet() {
     const res = await fetch("/api/my-cards");
+    if (!res.ok) throw new Error("Failed to load wallet");
     wallet = await res.json();
+  }
+
+  function showFatalError() {
+    document.querySelectorAll(".tabs, .panel").forEach((n) => n.remove());
+    const note = el("dbNote");
+    note.classList.add("error-banner");
+    note.innerHTML = `
+      Something went wrong loading your data. Check your connection and try again.
+      <button class="btn small" id="retryLoadBtn">Retry</button>`;
+    el("retryLoadBtn").addEventListener("click", () => window.location.reload());
   }
 
   async function loadPhotoList() {
@@ -298,6 +316,10 @@
     let cards = cardsDb.cards.filter(
       (c) => c.name.toLowerCase().includes(q) || c.issuer.toLowerCase().includes(q)
     );
+    if (cards.length === 0) {
+      grid.innerHTML = `<div class="empty">No cards match “${escapeHtml(filter)}”. Try a different name or issuer.</div>`;
+      return;
+    }
     cards = sortCards(cards, sortState.browse.sort, sortState.browse.ignoreIntro);
     grid.innerHTML = cards
       .map((c) => cardCardHtml(c, wallet.cardIds.includes(c.id)))
@@ -400,10 +422,14 @@
   }
 
   async function loadSettings() {
-    const res = await fetch("/api/settings");
-    if (!res.ok) return;
-    const data = await res.json();
-    el("webhookUrl").value = data.webhookUrl || "";
+    try {
+      const res = await fetch("/api/settings");
+      if (!res.ok) return;
+      const data = await res.json();
+      el("webhookUrl").value = data.webhookUrl || "";
+    } catch {
+      // non-critical; settings tab just stays blank
+    }
   }
 
   function bindSettings() {
@@ -499,11 +525,24 @@
   }
 
   async function init() {
-    const ok = await requireAuth();
+    let ok;
+    try {
+      ok = await requireAuth();
+    } catch (err) {
+      console.error(err);
+      showFatalError();
+      return;
+    }
     if (!ok) return;
     loadSortState();
-    await loadCardsDb();
-    await loadWallet();
+    try {
+      await loadCardsDb();
+      await loadWallet();
+    } catch (err) {
+      console.error(err);
+      showFatalError();
+      return;
+    }
     await loadPhotoList();
     await loadSettings();
     renderWallet();

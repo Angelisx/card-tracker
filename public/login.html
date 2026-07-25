@@ -23,7 +23,10 @@
     e.preventDefault();
     const password = document.getElementById('password').value;
     const errorEl = document.getElementById('loginError');
+    const submitBtn = e.target.querySelector('button[type="submit"]');
     errorEl.textContent = '';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Signing in…';
     try {
       const res = await fetch('/api/auth', {
         method: 'POST',
@@ -32,6 +35,7 @@
       });
       if (res.ok) {
         window.location.href = '/';
+        return;
       } else {
         const data = await res.json().catch(() => ({}));
         errorEl.textContent = data.error || 'Incorrect password';
@@ -39,6 +43,8 @@
     } catch (err) {
       errorEl.textContent = 'Something went wrong. Try again.';
     }
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Sign in';
   });
 </script>
 </body>

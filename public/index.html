@@ -41,7 +41,7 @@
         Ignore intro 0% APR (sort by ongoing rate)
       </label>
     </div>
-    <div id="walletGrid" class="grid"></div>
+    <div id="walletGrid" class="grid"><div class="loading">Loading your wallet…</div></div>
   </div>
 
   <div class="panel" id="panel-browse">
@@ -63,18 +63,18 @@
         Ignore intro 0% APR (sort by ongoing rate)
       </label>
     </div>
-    <div id="browseGrid" class="grid"></div>
+    <div id="browseGrid" class="grid"><div class="loading">Loading cards…</div></div>
   </div>
 
   <div class="panel" id="panel-best">
     <table class="rec-table">
       <thead><tr><th>Category</th><th>Best card in your wallet</th><th>Rate</th></tr></thead>
-      <tbody id="bestTableBody"></tbody>
+      <tbody id="bestTableBody"><tr><td colspan="3" class="loading">Loading…</td></tr></tbody>
     </table>
   </div>
 
   <div class="panel" id="panel-credit">
-    <div id="creditContent"></div>
+    <div id="creditContent"><div class="loading">Loading credit health…</div></div>
   </div>
 
   <div class="panel" id="panel-connect">
