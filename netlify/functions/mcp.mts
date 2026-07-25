@@ -84,14 +84,14 @@ async function callTool(name: string, args: any) {
       const wallet = await getWallet();
       if (!cardById(args?.cardId)) return { error: "Unknown card id" };
       const cardIds = Array.from(new Set([...wallet.cardIds, args.cardId]));
-      const updated = await setWallet({ cardIds, customCards: wallet.customCards });
+      const updated = await setWallet({ cardIds, customCards: wallet.customCards, aprOverrides: wallet.aprOverrides });
       await fireWebhook(updated);
       return { ok: true, wallet: updated };
     }
     case "remove_card_from_wallet": {
       const wallet = await getWallet();
       const cardIds = wallet.cardIds.filter((id) => id !== args?.cardId);
-      const updated = await setWallet({ cardIds, customCards: wallet.customCards });
+      const updated = await setWallet({ cardIds, customCards: wallet.customCards, aprOverrides: wallet.aprOverrides });
       await fireWebhook(updated);
       return { ok: true, wallet: updated };
     }

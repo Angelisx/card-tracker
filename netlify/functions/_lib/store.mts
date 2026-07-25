@@ -7,9 +7,15 @@ export function walletStore() {
 const WALLET_KEY = "wallet";
 const SETTINGS_KEY = "settings";
 
+export interface AprOverride {
+  apr: number;
+  updatedAt: string;
+}
+
 export interface WalletData {
   cardIds: string[];
   customCards: any[];
+  aprOverrides: Record<string, AprOverride>;
   updatedAt: string;
 }
 
@@ -21,7 +27,10 @@ export interface SettingsData {
 export async function getWallet(): Promise<WalletData> {
   const store = walletStore();
   const data = await store.get(WALLET_KEY, { type: "json" });
-  return data || { cardIds: [], customCards: [], updatedAt: new Date(0).toISOString() };
+  if (!data) {
+    return { cardIds: [], customCards: [], aprOverrides: {}, updatedAt: new Date(0).toISOString() };
+  }
+  return { aprOverrides: {}, ...data };
 }
 
 export async function setWallet(data: Omit<WalletData, "updatedAt">): Promise<WalletData> {

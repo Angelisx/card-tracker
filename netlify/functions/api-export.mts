@@ -35,15 +35,23 @@ export default async (req: Request, _context: Context) => {
       rewardType: c.rewardType,
       baseRate: c.baseRate,
       categories: (c.categories || []).map((cc: any) => `${cc.category}:${cc.rate}x`).join("; "),
+      apr: c.apr || "",
+      yourApr: wallet.aprOverrides?.[c.id]?.apr ?? "",
     }));
     return new Response(toCsv(rows), {
       headers: { "content-type": "text/csv", "content-disposition": "attachment; filename=my-cards.csv" },
     });
   }
 
+  const myCardsWithApr = myCards.map((c: any) => ({
+    ...c,
+    yourApr: wallet.aprOverrides?.[c.id]?.apr ?? null,
+  }));
+
   return Response.json({
     updatedAt: wallet.updatedAt,
-    myCards,
+    myCards: myCardsWithApr,
+    aprOverrides: wallet.aprOverrides,
     bestCardByCategory: recommendations,
     allCardsAvailable: allCards().length,
     creditSnapshot,

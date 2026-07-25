@@ -25,11 +25,12 @@ export default async (req: Request, _context: Context) => {
     } catch {
       return Response.json({ error: "Invalid JSON body" }, { status: 400 });
     }
+    const current = await getWallet();
     const cardIds: string[] = Array.isArray(body.cardIds) ? body.cardIds : [];
     const customCards: any[] = Array.isArray(body.customCards) ? body.customCards : [];
     const validIds = new Set(allCards().map((c) => c.id));
     const filtered = cardIds.filter((id) => validIds.has(id));
-    const wallet = await setWallet({ cardIds: filtered, customCards });
+    const wallet = await setWallet({ cardIds: filtered, customCards, aprOverrides: current.aprOverrides });
     await fireWebhook(wallet);
     return Response.json(wallet);
   }
@@ -48,25 +49,40 @@ export default async (req: Request, _context: Context) => {
         return Response.json({ error: "Unknown card id" }, { status: 400 });
       }
       const cardIds = Array.from(new Set([...current.cardIds, body.cardId]));
-      const wallet = await setWallet({ cardIds, customCards: current.customCards });
+      const wallet = await setWallet({ cardIds, customCards: current.customCards, aprOverrides: current.aprOverrides });
       await fireWebhook(wallet);
       return Response.json(wallet);
     }
     if (body.action === "remove" && typeof body.cardId === "string") {
       const cardIds = current.cardIds.filter((id) => id !== body.cardId);
-      const wallet = await setWallet({ cardIds, customCards: current.customCards });
+      const wallet = await setWallet({ cardIds, customCards: current.customCards, aprOverrides: current.aprOverrides });
       await fireWebhook(wallet);
       return Response.json(wallet);
     }
     if (body.action === "add_custom" && body.card) {
       const customCards = [...current.customCards, body.card];
-      const wallet = await setWallet({ cardIds: current.cardIds, customCards });
+      const wallet = await setWallet({ cardIds: current.cardIds, customCards, aprOverrides: current.aprOverrides });
       await fireWebhook(wallet);
       return Response.json(wallet);
     }
     if (body.action === "remove_custom" && typeof body.cardId === "string") {
       const customCards = current.customCards.filter((c: any) => c.id !== body.cardId);
-      const wallet = await setWallet({ cardIds: current.cardIds, customCards });
+      const wallet = await setWallet({ cardIds: current.cardIds, customCards, aprOverrides: current.aprOverrides });
+      await fireWebhook(wallet);
+      return Response.json(wallet);
+    }
+    if (body.action === "set_apr" && typeof body.cardId === "string") {
+      const aprOverrides = { ...current.aprOverrides };
+      if (body.apr === null || body.apr === undefined || body.apr === "") {
+        delete aprOverrides[body.cardId];
+      } else {
+        const apr = Number(body.apr);
+        if (!Number.isFinite(apr) || apr < 0 || apr > 99) {
+          return Response.json({ error: "APR must be a number between 0 and 99" }, { status: 400 });
+        }
+        aprOverrides[body.cardId] = { apr, updatedAt: new Date().toISOString() };
+      }
+      const wallet = await setWallet({ cardIds: current.cardIds, customCards: current.customCards, aprOverrides });
       await fireWebhook(wallet);
       return Response.json(wallet);
     }

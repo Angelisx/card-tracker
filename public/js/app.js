@@ -2,7 +2,7 @@
   "use strict";
 
   let cardsDb = null;
-  let wallet = { cardIds: [], customCards: [] };
+  let wallet = { cardIds: [], customCards: [], aprOverrides: {} };
   let photoCardIds = new Set();
 
   const el = (id) => document.getElementById(id);
@@ -143,7 +143,11 @@
   }
 
   // Returns a numeric APR to sort on, or null if the card has no APR data.
+  // A user-entered override (their actual current rate) always wins, since
+  // it's more accurate than the issuer's published intro/regular range.
   function sortApr(card, ignoreIntro) {
+    const override = wallet.aprOverrides && wallet.aprOverrides[card.id];
+    if (override) return override.apr;
     if (!card.aprData) return null;
     const { introRate, regularMin, regularMax } = card.aprData;
     if (!ignoreIntro && introRate !== null && introRate !== undefined) {
@@ -238,8 +242,26 @@
       </div>`;
   }
 
+  function aprEditHtml(card, inWallet) {
+    if (!inWallet) return "";
+    const override = wallet.aprOverrides && wallet.aprOverrides[card.id];
+    return `
+      <div class="apr-edit">
+        <label>Your APR:
+          <input type="number" step="0.01" min="0" max="99" class="apr-input" data-apr-id="${card.id}"
+            placeholder="e.g. 24.99" value="${override ? override.apr : ""}">
+          %
+        </label>
+        <button type="button" class="btn small" data-apr-save="${card.id}">Save</button>
+        ${override ? `<button type="button" class="btn small secondary" data-apr-clear="${card.id}">Clear</button>` : ""}
+      </div>`;
+  }
+
   function cardCardHtml(card, inWallet) {
-    const aprHtml = card.apr
+    const override = wallet.aprOverrides && wallet.aprOverrides[card.id];
+    const aprHtml = override
+      ? `<div class="apr-line apr-override">APR: ${override.apr}% (your rate)</div>`
+      : card.apr
       ? `<div class="apr-line">APR: ${card.apr}</div>`
       : "";
     return `
@@ -250,6 +272,7 @@
         <div class="issuer">${card.issuer} · ${card.rewardType}${card.rotating ? " · rotating categories" : ""}</div>
         <div class="rates">${ratesPillHtml(card)}</div>
         ${aprHtml}
+        ${aprEditHtml(card, inWallet)}
         <div class="card-actions">
           <button class="btn ${inWallet ? "danger" : ""}" data-action="${inWallet ? "remove" : "add"}" data-id="${card.id}">
             ${inWallet ? "Remove from wallet" : "Add to wallet"}
@@ -311,6 +334,23 @@
     toast(action === "add" ? "Added to wallet" : "Removed from wallet");
   }
 
+  async function saveApr(cardId, apr) {
+    const res = await fetch("/api/my-cards", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ action: "set_apr", cardId, apr }),
+    });
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      toast(data.error || "Could not save APR");
+      return;
+    }
+    wallet = await res.json();
+    renderWallet();
+    renderBrowse(el("browseSearch").value);
+    toast(apr === null ? "APR override cleared" : "APR updated");
+  }
+
   function bindGridClicks(gridId) {
     const grid = el(gridId);
     grid.addEventListener("click", (e) => {
@@ -322,6 +362,23 @@
       const removeBtn = e.target.closest("button[data-photo-remove]");
       if (removeBtn) {
         removeCardPhoto(removeBtn.dataset.photoRemove);
+        return;
+      }
+      const aprSaveBtn = e.target.closest("button[data-apr-save]");
+      if (aprSaveBtn) {
+        const cardId = aprSaveBtn.dataset.aprSave;
+        const input = grid.querySelector(`input[data-apr-id="${cardId}"]`);
+        const value = input ? input.value.trim() : "";
+        if (value === "") {
+          toast("Enter an APR value first");
+          return;
+        }
+        saveApr(cardId, value);
+        return;
+      }
+      const aprClearBtn = e.target.closest("button[data-apr-clear]");
+      if (aprClearBtn) {
+        saveApr(aprClearBtn.dataset.aprClear, null);
       }
     });
     grid.addEventListener("change", (e) => {
