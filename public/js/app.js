@@ -4,6 +4,10 @@
   let cardsDb = null;
   let wallet = { cardIds: [], customCards: [], aprOverrides: {} };
   let photoCardIds = new Set();
+  // Bumped only when a photo actually changes, so the <img> src stays stable
+  // across unrelated re-renders (typing in search, toggling other cards) and
+  // the browser can serve it from cache instead of re-fetching every time.
+  let photoCacheVersion = 0;
 
   const el = (id) => document.getElementById(id);
 
@@ -120,6 +124,7 @@
       return;
     }
     photoCardIds.add(cardId);
+    photoCacheVersion++;
     toast("Photo saved");
     renderWallet();
     renderBrowse(el("browseSearch").value);
@@ -132,6 +137,7 @@
       return;
     }
     photoCardIds.delete(cardId);
+    photoCacheVersion++;
     toast("Photo removed");
     renderWallet();
     renderBrowse(el("browseSearch").value);
@@ -234,7 +240,7 @@
     if (photoCardIds.has(card.id)) {
       return `
         <div class="card-visual has-photo">
-          <img src="/api/card-photo?cardId=${encodeURIComponent(card.id)}&t=${Date.now()}" alt="${card.name}">
+          <img src="/api/card-photo?cardId=${encodeURIComponent(card.id)}&v=${photoCacheVersion}" alt="${card.name}">
         </div>`;
     }
     const [c1, c2] = CARD_GRADIENTS[hashString(card.id) % CARD_GRADIENTS.length];
@@ -535,16 +541,17 @@
     }
     if (!ok) return;
     loadSortState();
+    // Fire all four independent fetches at once instead of chaining them —
+    // page load time was the sum of four round trips, now it's the slowest one.
+    const optionalLoad = Promise.all([loadPhotoList(), loadSettings()]);
     try {
-      await loadCardsDb();
-      await loadWallet();
+      await Promise.all([loadCardsDb(), loadWallet()]);
     } catch (err) {
       console.error(err);
       showFatalError();
       return;
     }
-    await loadPhotoList();
-    await loadSettings();
+    await optionalLoad;
     renderWallet();
     renderBrowse("");
     renderBest();
