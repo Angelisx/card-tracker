@@ -33,6 +33,7 @@ export default async (req: Request, _context: Context) => {
       name: c.name,
       issuer: c.issuer,
       rewardType: c.rewardType,
+      annualFee: c.annualFee ?? 0,
       baseRate: c.baseRate,
       categories: (c.categories || []).map((cc: any) => `${cc.category}:${cc.rate}x`).join("; "),
       apr: c.apr || "",
@@ -47,10 +48,12 @@ export default async (req: Request, _context: Context) => {
     ...c,
     yourApr: wallet.aprOverrides?.[c.id]?.apr ?? null,
   }));
+  const totalAnnualFees = myCards.reduce((sum: number, c: any) => sum + (c.annualFee ?? 0), 0);
 
   return Response.json({
     updatedAt: wallet.updatedAt,
     myCards: myCardsWithApr,
+    totalAnnualFees,
     aprOverrides: wallet.aprOverrides,
     bestCardByCategory: recommendations,
     allCardsAvailable: allCards().length,

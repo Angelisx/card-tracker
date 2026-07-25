@@ -188,6 +188,27 @@ code, .mono {
   color: var(--good);
 }
 
+.fee-line {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+.fee-line.has-fee {
+  color: var(--danger);
+}
+
+.wallet-summary {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 16px;
+}
+.wallet-summary:empty {
+  display: none;
+}
+.wallet-summary strong {
+  color: var(--text);
+}
+
 .apr-edit {
   display: flex;
   align-items: center;

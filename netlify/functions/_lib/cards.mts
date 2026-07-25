@@ -11,6 +11,7 @@ export interface Card {
   name: string;
   issuer: string;
   rewardType: string;
+  annualFee: number;
   rotating: boolean;
   categories: CardCategory[];
   baseRate: number;

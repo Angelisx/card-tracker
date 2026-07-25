@@ -257,6 +257,13 @@
       </div>`;
   }
 
+  function feeLineHtml(card) {
+    const fee = card.annualFee || 0;
+    return fee > 0
+      ? `<div class="fee-line has-fee">Annual fee: $${fee}/yr</div>`
+      : `<div class="fee-line">No annual fee</div>`;
+  }
+
   function cardCardHtml(card, inWallet) {
     const override = wallet.aprOverrides && wallet.aprOverrides[card.id];
     const aprHtml = override
@@ -271,6 +278,7 @@
         <h3>${card.name}</h3>
         <div class="issuer">${card.issuer} · ${card.rewardType}${card.rotating ? " · rotating categories" : ""}</div>
         <div class="rates">${ratesPillHtml(card)}</div>
+        ${feeLineHtml(card)}
         ${aprHtml}
         ${aprEditHtml(card, inWallet)}
         <div class="card-actions">
@@ -281,9 +289,23 @@
       </div>`;
   }
 
+  function renderWalletSummary(myCards) {
+    const summary = el("walletSummary");
+    if (myCards.length === 0) {
+      summary.innerHTML = "";
+      return;
+    }
+    const total = myCards.reduce((sum, c) => sum + (c.annualFee || 0), 0);
+    const withFees = myCards.filter((c) => (c.annualFee || 0) > 0).length;
+    summary.innerHTML = total > 0
+      ? `${myCards.length} card${myCards.length === 1 ? "" : "s"} · <strong>$${total}/yr</strong> in combined annual fees across ${withFees} card${withFees === 1 ? "" : "s"}`
+      : `${myCards.length} card${myCards.length === 1 ? "" : "s"} · $0/yr in annual fees`;
+  }
+
   function renderWallet() {
     const grid = el("walletGrid");
     let myCards = wallet.cardIds.map(cardById).filter(Boolean);
+    renderWalletSummary(myCards);
     if (myCards.length === 0) {
       grid.innerHTML = `<div class="empty">No cards yet. Go to <strong>Browse Cards</strong> and add the ones you own.</div>`;
       return;

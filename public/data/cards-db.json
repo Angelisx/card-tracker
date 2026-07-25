@@ -22,6 +22,7 @@
       "name": "Chase Sapphire Preferred",
       "issuer": "Chase",
       "rewardType": "points",
+      "annualFee": 95,
       "rotating": false,
       "categories": [
         {
@@ -56,6 +57,7 @@
       "name": "Chase Freedom Unlimited",
       "issuer": "Chase",
       "rewardType": "cashback",
+      "annualFee": 0,
       "rotating": false,
       "categories": [
         {
@@ -80,6 +82,7 @@
       "name": "Chase Freedom Flex",
       "issuer": "Chase",
       "rewardType": "cashback",
+      "annualFee": 0,
       "rotating": true,
       "categories": [
         {
@@ -114,6 +117,7 @@
       "name": "Capital One Savor Cash Rewards",
       "issuer": "Capital One",
       "rewardType": "cashback",
+      "annualFee": 0,
       "rotating": false,
       "categories": [
         {
@@ -135,7 +139,7 @@
       ],
       "baseRate": 1,
       "source": "https://www.nerdwallet.com/credit-cards/best/restaurants",
-      "apr": "0% intro (12 mo), then 18.49%\u201328.49% variable",
+      "apr": "0% intro (12 mo), then 18.49%–28.49% variable",
       "aprSource": "https://www.capitalone.com/credit-cards/savor/",
       "aprData": {
         "introRate": 0,
@@ -149,6 +153,7 @@
       "name": "Capital One SavorOne",
       "issuer": "Capital One",
       "rewardType": "cashback",
+      "annualFee": 0,
       "rotating": false,
       "categories": [
         {
@@ -176,6 +181,7 @@
       "name": "Capital One Venture X",
       "issuer": "Capital One",
       "rewardType": "miles",
+      "annualFee": 395,
       "rotating": false,
       "categories": [
         {
@@ -197,6 +203,7 @@
       "name": "Capital One Quicksilver",
       "issuer": "Capital One",
       "rewardType": "cashback",
+      "annualFee": 0,
       "rotating": false,
       "categories": [],
       "baseRate": 1.5,
@@ -207,6 +214,7 @@
       "name": "American Express Gold",
       "issuer": "American Express",
       "rewardType": "points",
+      "annualFee": 325,
       "rotating": false,
       "categories": [
         {
@@ -228,6 +236,7 @@
       "name": "American Express Platinum",
       "issuer": "American Express",
       "rewardType": "points",
+      "annualFee": 695,
       "rotating": false,
       "categories": [
         {
@@ -244,6 +253,7 @@
       "name": "Amex Blue Cash Preferred",
       "issuer": "American Express",
       "rewardType": "cashback",
+      "annualFee": 95,
       "rotating": false,
       "categories": [
         {
@@ -273,6 +283,7 @@
       "name": "Citi Double Cash",
       "issuer": "Citi",
       "rewardType": "cashback",
+      "annualFee": 0,
       "rotating": false,
       "categories": [],
       "baseRate": 2,
@@ -283,6 +294,7 @@
       "name": "Citi Custom Cash",
       "issuer": "Citi",
       "rewardType": "cashback",
+      "annualFee": 0,
       "rotating": true,
       "categories": [
         {
@@ -293,7 +305,7 @@
         {
           "category": "dining",
           "rate": 5,
-          "notes": "Only one category earns 5% per cycle \u2014 whichever you spend most on"
+          "notes": "Only one category earns 5% per cycle — whichever you spend most on"
         },
         {
           "category": "groceries",
@@ -309,6 +321,7 @@
       "name": "Wells Fargo Active Cash",
       "issuer": "Wells Fargo",
       "rewardType": "cashback",
+      "annualFee": 0,
       "rotating": false,
       "categories": [],
       "baseRate": 2,
@@ -319,6 +332,7 @@
       "name": "Wells Fargo Autograph",
       "issuer": "Wells Fargo",
       "rewardType": "points",
+      "annualFee": 0,
       "rotating": false,
       "categories": [
         {
@@ -354,6 +368,7 @@
       "name": "Discover it Cash Back",
       "issuer": "Discover",
       "rewardType": "cashback",
+      "annualFee": 0,
       "rotating": true,
       "categories": [
         {
@@ -374,7 +389,7 @@
       ],
       "baseRate": 1,
       "source": "https://www.cnbc.com/select/chase-freedom-cash-back-calendar/",
-      "apr": "0% intro (15 mo), then 17.49%\u201326.49% variable",
+      "apr": "0% intro (15 mo), then 17.49%–26.49% variable",
       "aprSource": "https://www.discover.com/credit-cards/cash-back/it-card/",
       "aprData": {
         "introRate": 0,
@@ -388,12 +403,13 @@
       "name": "Bank of America Customized Cash Rewards",
       "issuer": "Bank of America",
       "rewardType": "cashback",
+      "annualFee": 0,
       "rotating": true,
       "categories": [
         {
           "category": "gas",
           "rate": 3,
-          "notes": "Pick 1 of: gas, online shopping, dining, travel, drugstores, home improvement/furnishings \u2014 up to $2,500/quarter combined w/ groceries"
+          "notes": "Pick 1 of: gas, online shopping, dining, travel, drugstores, home improvement/furnishings — up to $2,500/quarter combined w/ groceries"
         },
         {
           "category": "groceries",
@@ -412,6 +428,7 @@
       "name": "U.S. Bank Cash+",
       "issuer": "U.S. Bank",
       "rewardType": "cashback",
+      "annualFee": 0,
       "rotating": true,
       "categories": [
         {
@@ -436,6 +453,7 @@
       "name": "Apple Card",
       "issuer": "Goldman Sachs / Apple",
       "rewardType": "cashback",
+      "annualFee": 0,
       "rotating": false,
       "categories": [
         {
@@ -452,6 +470,7 @@
       "name": "Amazon Prime Visa",
       "issuer": "Chase",
       "rewardType": "cashback",
+      "annualFee": 0,
       "rotating": false,
       "categories": [
         {
@@ -480,6 +499,7 @@
       "name": "Costco Anywhere Visa",
       "issuer": "Citi",
       "rewardType": "cashback",
+      "annualFee": 0,
       "rotating": false,
       "categories": [
         {
@@ -509,6 +529,7 @@
       "name": "Blue Cash Everyday from American Express",
       "issuer": "American Express",
       "rewardType": "cashback",
+      "annualFee": 0,
       "rotating": false,
       "categories": [
         {
@@ -529,7 +550,7 @@
       ],
       "baseRate": 1,
       "source": "https://www.cnbc.com/select/american-express-relaunches-blue-cash-everyday-card-new-benefits/",
-      "apr": "0% intro (15 mo), then 19.49%\u201328.49% variable",
+      "apr": "0% intro (15 mo), then 19.49%–28.49% variable",
       "aprSource": "https://www.nerdwallet.com/credit-cards/reviews/american-express-blue-cash-everyday",
       "aprData": {
         "introRate": 0,
@@ -543,6 +564,7 @@
       "name": "Amex EveryDay Credit Card",
       "issuer": "American Express",
       "rewardType": "points",
+      "annualFee": 0,
       "rotating": false,
       "categories": [
         {
@@ -558,7 +580,7 @@
       ],
       "baseRate": 1,
       "source": "https://onemileatatime.com/reviews/credit-cards/american-express/amex-everyday-card/",
-      "apr": "0% intro (15 mo), then 17.74%\u201328.74% variable",
+      "apr": "0% intro (15 mo), then 17.74%–28.74% variable",
       "aprSource": "https://upgradedpoints.com/credit-cards/reviews/amex-everyday-credit-card/",
       "aprData": {
         "introRate": 0,
@@ -572,17 +594,18 @@
       "name": "Navy Federal cashRewards",
       "issuer": "Navy Federal Credit Union",
       "rewardType": "cashback",
+      "annualFee": 0,
       "rotating": false,
       "categories": [],
       "baseRate": 1.5,
       "source": "https://www.forbes.com/advisor/credit-cards/reviews/navy-federal-cashrewards/",
-      "apr": "14.15%\u201318.00% variable (no intro 0% APR offer)",
+      "apr": "14.15%–18.00% variable (no intro 0% APR offer)",
       "aprSource": "https://www.navyfederal.org/content/dam/nfculibs/pdfs/credit-debit-cards/nfcu_573cash.pdf",
       "aprData": {
         "introRate": null,
         "introMonths": null,
         "regularMin": 14.15,
-        "regularMax": 18.0
+        "regularMax": 18
       }
     },
     {
@@ -590,6 +613,7 @@
       "name": "Capital One VentureOne Rewards",
       "issuer": "Capital One",
       "rewardType": "miles",
+      "annualFee": 0,
       "rotating": false,
       "categories": [
         {
@@ -600,7 +624,7 @@
       ],
       "baseRate": 1.25,
       "source": "https://www.capitalone.com/credit-cards/ventureone/",
-      "apr": "0% intro (15 mo), then 18.74%\u201328.74% variable",
+      "apr": "0% intro (15 mo), then 18.74%–28.74% variable",
       "aprSource": "https://www.capitalone.com/credit-cards/ventureone/",
       "aprData": {
         "introRate": 0,
@@ -614,11 +638,12 @@
       "name": "Citi Simplicity",
       "issuer": "Citi",
       "rewardType": "none",
+      "annualFee": 0,
       "rotating": false,
       "categories": [],
       "baseRate": 0,
-      "source": "No rewards program \u2014 0% intro APR / balance-transfer focused card. Tracked here for visibility only, not reward optimization.",
-      "apr": "0% intro (18 mo), then 17.49%\u201328.24% variable, no penalty APR",
+      "source": "No rewards program — 0% intro APR / balance-transfer focused card. Tracked here for visibility only, not reward optimization.",
+      "apr": "0% intro (18 mo), then 17.49%–28.24% variable, no penalty APR",
       "aprSource": "https://www.nerdwallet.com/reviews/credit-cards/citi-simplicity",
       "aprData": {
         "introRate": 0,
@@ -632,11 +657,12 @@
       "name": "CareCredit Credit Card",
       "issuer": "Synchrony",
       "rewardType": "none",
+      "annualFee": 0,
       "rotating": false,
       "categories": [],
       "baseRate": 0,
       "source": "Healthcare/veterinary financing card, no general rewards program. Tracked here for visibility only.",
-      "apr": "32.99% standard (39.99% penalty APR); promo plans: 0% deferred interest (6/12/18/24 mo, interest charged retroactively if not paid in full) or reduced fixed APR ~14.9%\u201317.9% on longer terms",
+      "apr": "32.99% standard (39.99% penalty APR); promo plans: 0% deferred interest (6/12/18/24 mo, interest charged retroactively if not paid in full) or reduced fixed APR ~14.9%–17.9% on longer terms",
       "aprSource": "https://www.carecredit.com/well-u/financial-health/deferred-interest-vs-apr/",
       "aprData": {
         "introRate": null,
@@ -650,11 +676,12 @@
       "name": "Petland Credit Card",
       "issuer": "Comenity Bank (Petland)",
       "rewardType": "none",
+      "annualFee": 0,
       "rotating": false,
       "categories": [],
       "baseRate": 0,
       "source": "Petland store-financing card, no general rewards program. Tracked here for visibility only.",
-      "apr": "35.99% variable standard; promo plans: 5.99%\u20139.99% fixed (18\u201360 mo) or 0% deferred interest (6/12/24 mo, interest charged retroactively if not paid in full)",
+      "apr": "35.99% variable standard; promo plans: 5.99%–9.99% fixed (18–60 mo) or 0% deferred interest (6/12/24 mo, interest charged retroactively if not paid in full)",
       "aprSource": "https://d.comenity.net/ac/petland/public/help/apr-and-fees",
       "aprData": {
         "introRate": null,

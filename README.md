@@ -8,7 +8,7 @@ tools via a JSON/CSV API, an outgoing webhook, or an MCP-compatible endpoint.
 ## Features
 
 - **Browse Cards** — searchable database of cards with their reward categories.
-- **My Wallet** — the cards you actually own.
+- **My Wallet** — the cards you actually own, with a running total of combined annual fees.
 - **Best Card by Category** — auto-computed recommendation per category from your wallet.
 - **Password-gated** — simple session-cookie login, nothing public.
 - **Data portability**:
@@ -48,8 +48,9 @@ Reward categories — especially **rotating** ones (Discover it, Chase Freedom F
 Citi Custom Cash, Bank of America Customized Cash, U.S. Bank Cash+) — change
 quarterly or let you pick your own category. Edit `public/data/cards-db.json`
 and redeploy (or push to GitHub, which auto-deploys) whenever they change.
-This app is a personal tool, not financial advice — always confirm current
-terms with your card issuer.
+Each card also has an `annualFee` field (0 if there's none) — update it if an
+issuer changes their fee. This app is a personal tool, not financial advice —
+always confirm current terms with your card issuer.
 
 ## Security notes
 
